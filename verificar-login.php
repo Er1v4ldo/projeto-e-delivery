@@ -4,7 +4,7 @@
     $login = $_POST["login"];
     $senha = $_POST["senha"];
     
-    $con = mysqli_connect("127.0.0.1","root","","db_edelivery");
+    $con = mysqli_connect("127.0.0.1","root","root","db_edelivery");
     
     $sql = "select * from pessoa where email = '".$login."' and senha = '".$senha."'";
     

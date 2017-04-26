@@ -23,8 +23,8 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav nav navbar-right">
-                        <li><a href="#">Cadastre sua Loja</a></li>
-                        <li><a href="#">Cadastre-se</a></li>
+                        <li><a class="btn btn-danger" href="#">Cadastre sua Loja</a></li>
+                        <li><a class="btn btn-danger" href="#">Cadastre-se</a></li>
                     </ul>
                 </div>
             </nav>
@@ -62,12 +62,13 @@
                                 <?php
                                 //se existe
                                 if (isset($_GET["msg"])) {
-                                    echo $_GET["msg"];
+                                    $msg = $_GET["msg"];
+                                    echo "<p class=\"label label-warning\">" . $msg . "</p>";
                                 }
                                 ?>
                                 <div>
-                                    <a href="#">Esqueceu sua senha</a>.
-                                    <a href="#" class="text-center">Realize seu Cadastro</a>.
+                                    <a class="btn btn-link right" href="#">Esqueceu sua senha</a>
+                                    <a class="btn btn-link right" href="#" class="text-center">Realize seu Cadastro</a>
                                 </div> 
                                 <!--botão-->
                                 <div class="">
