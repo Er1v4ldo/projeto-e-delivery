@@ -1,0 +1,25 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 60px;
+    /* bottom = footer height */
+}
+
+#form-container {
+    
+}
+footer {
+    padding: 20px;
+    background: #333;
+    color: #FFF;
+    margin-top: 10px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+footer address:last-child {
+    margin-bottom: 0;
+}
