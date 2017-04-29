@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="estilo_index.css" />
+        <link rel="stylesheet" href="apps/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="apps/public/css/estilo_index.css" />
         <meta name="viewport" content="width=device-width" />
         <style>
             .navbar-header button {
