@@ -3,33 +3,39 @@ require_once '../../controller/conexao.php';
 require_once './venda-banco.php';
 ?>
 <html>
+
     <head>
         <meta charset="UTF-8" />
         <title>e-Delivery</title>
-        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../../bootstrap/css/animate.css" rel="stylesheet" type="text/css"/>
+        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../bootstrap/css/animate.css" rel="stylesheet" type="text/css" />
         <meta name="viewport" content="width=device-width" />
         <style>
             .navbar-header button {
                 color: #fff
             }
+
             .fullscreen {
-                width:100%;
+                width: 100%;
             }
+
             main {
-                padding-top:50px;
+                padding-top: 50px;
             }
+
             footer {
-                background:#333;
-                color:#fff;
-                padding:20px 0;
-                text-align:center;
+                background: #333;
+                color: #fff;
+                padding: 20px 0;
+                text-align: center;
                 position: absolute;
                 bottom: 0px;
                 width: 100%;
             }
+
         </style>
     </head>
+
     <body>
         <header>
             <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -62,45 +68,83 @@ require_once './venda-banco.php';
             </nav>
         </header>
         <main>
+            <section class="container">
+                <table class="table table-condensed table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nome do cliente</th>
+                            <th>Nome da comida</th>
+                            <th>Data da venda</th>
+                            <th>Quantidade</th>
+                            <th>Total</th>
+                            <th>Pagamento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $vendas = listaVendas($conexao);
+                        //foreach ($vendas as $produto) :
+                        for ($i = 0; $i < count($vendas); $i++) {
+                            $produto[$i] = $vendas[$i];
+                            ?>
+                            <?php
+                            if ($produto[$i]['status_pagamento'] == 'pendente') {
+                                ?>
+                                <tr class="danger">
+                                    <td>
+                                        <?= $produto[$i]['nome'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $produto[$i]['titulo'] ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <?= $produto[$i]['data_venda'] ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <?= $produto[$i]['quantidade_produto'] ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <?= "R$ " . $produto[$i]['total_compra'] ?>
+                                    </td>
 
-            <table class="table table-striped table-bordered">
-                <tr>
-                    <td>Nome do cliente</td>
-                    <td>Nome da comida</td>
-                    <td>Data da venda</td>
-                    <td>Quantidade</td>
-                    <td>Total</td>
-                </tr>
-                <?php
-                $vendas = listaVendas($conexao);
-                //foreach ($vendas as $produto) :
-                for ($i = 0; $i < count($vendas); $i++) {
-                    $produto[$i] = $vendas[$i];
-                    ?>
-                    <tr>
-                        <td><?= $produto[$i]['NOME'] ?></td>
-                        <td><?= $produto[$i]['TITULO'] ?></td>
-                        <td><?= $produto[$i]['DATA_VENDA'] ?></td>
-                        <td><?= $produto[$i]['QUANTIDADE_PRODUTO'] ?></td>
-                        <td><?= $produto[$i]['TOTAL_COMPRA'] ?></td>
-                        <td>
-                            <a class="btn btn-primary" 
-                               href="#">
-                                alterar
-                            </a>
-                        </td>
-                        <td>
-                            <form action="#" method="post">
-                                <input type="hidden" name="id" value="">
-                                <button class="btn btn-danger">remover</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <?php
-                }
-                //endforeach
-                ?>	
-            </table>
+                                    <td class="text-center">
+                                        <?= $produto[$i]['status_pagamento'] ?>
+                                    </td>
+                                </tr>
+                                <?php
+                            } else {
+                                ?>
+                                <tr>
+                                    <td>
+                                        <?= $produto[$i]['nome'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $produto[$i]['titulo'] ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <?= $produto[$i]['data_venda'] ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <?= $produto[$i]['quantidade_produto'] ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <?= "R$ " . $produto[$i]['total_compra'] ?>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <?= $produto[$i]['status_pagamento'] ?>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                            <?php
+                        }
+                        //endforeach
+                        ?>
+                    </tbody>
+                </table>
+            </section>
 
         </main>
         <footer>
@@ -119,6 +163,8 @@ require_once './venda-banco.php';
         <script src="../../public/js/wow.min.js" type="text/javascript"></script>
         <script>
             new WOW().init();
+
         </script>
     </body>
+
 </html>
