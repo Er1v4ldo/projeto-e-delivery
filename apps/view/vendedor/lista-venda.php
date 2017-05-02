@@ -88,27 +88,27 @@ require_once './venda-banco.php';
                             $produto[$i] = $vendas[$i];
                             ?>
                             <?php
-                            if ($produto[$i]['status_pagamento'] == 'pendente') {
+                            if ($produto[$i]['STATUS_PAGAMENTO'] == 'PENDENTE') {
                                 ?>
                                 <tr class="danger">
                                     <td>
-                                        <?= $produto[$i]['nome'] ?>
+                                        <?= $produto[$i]['NOME'] ?>
                                     </td>
                                     <td>
-                                        <?= $produto[$i]['titulo'] ?>
+                                        <?= $produto[$i]['TITULO'] ?>
                                     </td>
                                     <td class="text-center">
-                                        <?= $produto[$i]['data_venda'] ?>
+                                        <?= date( 'd/m/Y', strtotime( str_replace( '/', '-', $produto[$i]['DATA_VENDA'] ) ) ) ?>
                                     </td>
                                     <td class="text-center">
-                                        <?= $produto[$i]['quantidade_produto'] ?>
+                                        <?= $produto[$i]['QUANTIDADE_PRODUTO'] ?>
                                     </td>
                                     <td class="text-center">
-                                        <?= "R$ " . $produto[$i]['total_compra'] ?>
+                                        <?= "R$ " . $produto[$i]['TOTAL_COMPRA'] ?>
                                     </td>
 
                                     <td class="text-center">
-                                        <?= $produto[$i]['status_pagamento'] ?>
+                                        <?= $produto[$i]['STATUS_PAGAMENTO'] ?>
                                     </td>
                                 </tr>
                                 <?php
@@ -116,23 +116,23 @@ require_once './venda-banco.php';
                                 ?>
                                 <tr>
                                     <td>
-                                        <?= $produto[$i]['nome'] ?>
+                                        <?= $produto[$i]['NOME'] ?>
                                     </td>
                                     <td>
-                                        <?= $produto[$i]['titulo'] ?>
+                                        <?= $produto[$i]['TITULO'] ?>
                                     </td>
                                     <td class="text-center">
-                                        <?= $produto[$i]['data_venda'] ?>
+                                    <?= date( 'd/m/Y', strtotime( str_replace( '/', '-', $produto[$i]['DATA_VENDA'] ) ) ) ?>
                                     </td>
                                     <td class="text-center">
-                                        <?= $produto[$i]['quantidade_produto'] ?>
+                                        <?= $produto[$i]['QUANTIDADE_PRODUTO'] ?>
                                     </td>
                                     <td class="text-center">
-                                        <?= "R$ " . $produto[$i]['total_compra'] ?>
+                                        <?= "R$ " . $produto[$i]['TOTAL_COMPRA'] ?>
                                     </td>
 
                                     <td class="text-center">
-                                        <?= $produto[$i]['status_pagamento'] ?>
+                                        <?= $produto[$i]['STATUS_PAGAMENTO'] ?>
                                     </td>
                                 </tr>
                                 <?php

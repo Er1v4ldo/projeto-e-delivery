@@ -5,27 +5,31 @@ require_once '../../controller/conexao.php';
 function listaVendas($conexao) {
     $vendas = array();
 
-    $resultado = mysqli_query($conexao, "select 
-                                pf2.NOME , 
-                                p.TITULO,
-                                v.DATA_VENDA ,
-                                v.QUANTIDADE_PRODUTO,
-                                v.TOTAL_COMPRA
-                                from venda v
-                                inner join pessoa pf2
-                                        on	(v.id_pessoa = pf2.ID_PESSOA)
-                                inner join produto p
-                                        on (v.ID_PRODUTO = p.ID_PRODUTO)
-                                where v.ID_VENDA in
-                                        (select v2.ID_VENDA 
-                                                from venda v2
-                                                        inner join produto p2
-                                                                on (p2.ID_PRODUTO = v2.ID_PRODUTO)
-                                                        inner join loja l
-                                                                on (l.ID_LOJA = p2.ID_LOJA)
-                                                        inner join pessoa ps
-                                                                on (ps.ID_PESSOA = l.ID_PESSOA)
-                                                where ps.ID_PESSOA = 5);");
+    $resultado = mysqli_query($conexao, "SELECT
+     PF2.NOME ,
+     P.TITULO,
+     V.DATA_VENDA ,
+     V.QUANTIDADE_PRODUTO,
+     V.TOTAL_COMPRA,
+     PG.STATUS_PAGAMENTO
+FROM VENDA V
+     INNER JOIN PESSOA PF2
+          ON (V.ID_PESSOA = PF2.ID_PESSOA)
+     INNER JOIN PRODUTO P
+          ON (V.ID_PRODUTO = P.ID_PRODUTO)
+     INNER JOIN PAGAMENTO PG
+          ON (V.ID_VENDA = PG.ID_PAGAMENTO)
+WHERE V.ID_VENDA IN
+    (SELECT V2.ID_VENDA
+     FROM VENDA V2
+          INNER JOIN PRODUTO P2
+               ON (P2.ID_PRODUTO = V2.ID_PRODUTO)
+          INNER JOIN LOJA L
+               ON (L.ID_LOJA = P2.ID_LOJA)
+          INNER JOIN PESSOA PS
+               ON (PS.ID_PESSOA = L.ID_PESSOA)
+     WHERE PS.ID_PESSOA = 5
+    );");
     while($produto_array = mysqli_fetch_assoc($resultado)) {
 		
 //		$vendas['NOME'] =$produto_array['NOME'];
